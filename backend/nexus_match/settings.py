@@ -38,8 +38,18 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'games.apps.GamesConfig',
+    'players.apps.PlayersConfig',
+
     'rest_framework',
 ]
+
+REST_FRAMEWORK = {
+    'EXCEPTION_HANDLER': 'nexus_match.utils.exception_handler.custom_exception_handler',
+    'DEFAULT_RENDERER_CLASSES': [
+        'nexus_match.utils.renderers.NexusRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ]
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
