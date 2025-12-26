@@ -37,4 +37,47 @@ def lobby_list_create_view(request):
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def player_lobby_join(request, pk):
-    lobby = Lobby.get_object_or_404(pk= pk)
+    lobby = get_object_or_404(Lobby, pk= pk)
+
+    try:
+        player_profile = Player.objects.get(user=request.user)
+    except Player.DoesNotExist:
+        return Response({"detail": "Crie um perfil de jogador primeiro."}, status=400)
+    
+    if lobby.players.count() >= lobby.max_players:
+        return Response({"detail": "Esta sala está cheia."}, status=400)
+    
+    if lobby.players.filter(id=player_profile.id).exists():
+        return Response({"detail": "Você já está  nesta sala."}, status=400)
+    
+    
+    lobby.players.add(player_profile)
+
+    return Response({"detail": "Entrou com sucesso!", "lobby": lobby.titulo}, status=200)
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def player_leave_lobby(request, pk):
+    lobby = get_object_or_404(Lobby, pk= pk)
+    try:
+        player_profile = Player.objects.get(user=request.user)
+    except Player.DoesNotExist:
+        return Response({"detail": "Perfil não encontrado."}, status=400)
+    
+    if lobby.host == player_profile:
+        lobby.delete()
+        return Response(
+            {"detail": "A sala foi encerrada pois o líder saiu."}, 
+            status=status.HTTP_200_OK
+        )
+
+    
+    if not lobby.players.filter(id=player_profile.id).exists():
+        return Response({"detail": "Você não está nesta sala."}, status=400)
+
+    lobby.players.remove(player_profile)
+
+    return Response(
+        {"detail": "Você saiu da sala com sucesso!"}, 
+        status=status.HTTP_200_OK
+    )

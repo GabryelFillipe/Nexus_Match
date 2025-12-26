@@ -15,6 +15,6 @@ class LobbySerializer(serializers.ModelSerializer):
         
         representation['host'] = instance.host.nickname 
 
-        representation['players'] = instance.players.all()
+        representation['players'] = [player.nickname for player in instance.players.all()]
         
         return representation

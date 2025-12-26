@@ -15,7 +15,7 @@ class Lobby(models.Model):
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
-    players = models.ManyToManyField(Player)
+    players = models.ManyToManyField(Player, related_name='salas_que_estou', blank=True)
 
     def __str__(self):
         return f"{self.titulo} ({self.game.nome})"

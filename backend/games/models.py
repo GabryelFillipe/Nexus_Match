@@ -2,6 +2,8 @@ from django.db import models
 
 # Create your models here.
 
+
+
 class Genre(models.Model):
     name = models.CharField(max_length=100, unique=True)
     
@@ -27,3 +29,11 @@ class Game(models.Model):
     
     def __str__(self):
         return self.nome
+    
+class Rank(models.Model):
+    game = models.ForeignKey(Game, on_delete=models.CASCADE, related_name='ranks')
+    nome = models.CharField(max_length=50)
+    ordem = models.IntegerField(default=0)
+
+    def __str__(self):
+        return f"{self.nome} - {self.game.nome}"
