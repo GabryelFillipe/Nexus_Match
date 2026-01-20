@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+:root {
+  --color-primary: #7C3AED;
+  --color-primary-dark: #2E1065;
+  --color-accent: #A78BFA;
+
+  --bg-main: #020617;
+  --bg-surface: #0F172A;
+  --bg-input: #1E293B;
+
+  --text-primary: #F8FAFC;
+  --text-secondary: #94A3B8;
+  --text-muted: #64748B;
+
+  --status-success: #10B981;
+  --status-danger: #EF4444;
+  --status-gold: #F59E0B;
+  --status-info: #3B82F6;
+
+  --border-subtle: #334155;
+  --border-modal: #475569;
+  --border-focus: #7C3AED;
+  --border-hover: rgba(124, 58, 237, 0.3);
+
+  --border-width-thin: 1px;
+  --border-width-medium: 2px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-full: 9999px;
+
+  --shadow-neon-modal: 0 0 60px -5px rgba(124, 58, 237, 0.5);
+  --shadow-card-hover: 0 4px 24px -2px rgba(124, 58, 237, 0.3);
+  --shadow-depth: 0 10px 40px 0px rgba(0, 0, 0, 0.6);
+  --shadow-focus: 0 0 0 2px rgba(124, 58, 237, 0.2);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+  padding: 0;
+}
+
+.input-gamer {
+  background-color: var(--bg-input);
+  border: var(--border-width-thin) solid var(--border-subtle);
+  color: var(--text-primary);
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
+}
+
+.input-gamer:focus {
+  border-color: var(--border-focus);
+  box-shadow: var(--shadow-focus);
+  outline: none;
+}
+
+.modal-gamer {
+  background-color: var(--bg-surface);
+  border: var(--border-width-thin) solid var(--border-modal);
+  box-shadow: var(--shadow-neon-modal);
+  border-radius: var(--radius-md);
+}

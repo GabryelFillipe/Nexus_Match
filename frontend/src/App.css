@@ -1,0 +1,45 @@
+.App{
+  width: 100dvw;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.main{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-login{
+  width: 80%;
+  margin-top: 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top:32px ;
+  padding-bottom: 72px;
+}
+
+.container-input{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding-block: 8px;
+}
+
+.input{
+  width: 80%;
+}
+
+.options{
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+}
